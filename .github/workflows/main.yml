@@ -1,0 +1,25 @@
+name: main
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    
+
+jobs:
+  Build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      
+    - name: Install dependencies
+      run: |
+        sudo apt install -y build-essential
+        sudo apt install -y libsdl2-dev
+        
+    - name: Build from source
+      run: make Makefile
+
+    - name: Run 
+      run: sobel
